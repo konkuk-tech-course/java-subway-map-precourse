@@ -1,32 +1,42 @@
 package subway.domain;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Objects;
+import subway.domain.constant.DomainErrorMessage;
+
+import java.util.*;
 
 public class StationRepository {
     private static class InstanceHolder {
         private static final StationRepository INSTANCE = new StationRepository();
     }
 
-    private static final List<Station> stations = new ArrayList<>();
-    
+    private final Map<String, Station> stations = new HashMap<>();
+
     private StationRepository(){}
 
-    public static StationRepository getInstance() {
+    public StationRepository getInstance() {
         return StationRepository.InstanceHolder.INSTANCE;
     }
 
-    public static List<Station> stations() {
-        return Collections.unmodifiableList(stations);
+    public Set<String> stations() {
+        return Collections.unmodifiableSet(stations.keySet());
     }
 
-    public static void addStation(Station station) {
-        stations.add(station);
+    public void addStation(Station station) {
+        stations.put(station.getName(), station);
     }
 
-    public static boolean deleteStation(String name) {
-        return stations.removeIf(station -> Objects.equals(station.getName(), name));
+    private void validate(Station station) {
+
+    }
+
+    public boolean hasStation(String name) {
+        return stations.containsKey(name);
+    }
+
+    public void deleteStation(String name) {
+        if (!hasStation(name)) {
+            throw new IllegalArgumentException(DomainErrorMessage.NOT_EXIST_STATION.get());
+        }
+        stations.remove(name);
     }
 }
