@@ -5,6 +5,7 @@
 - [ ] StationRepository 구현
     - [ ] 유효성 검증
         - [ ] 중복 검사
+        - [ ] 에러메세지 추가
     - [ ] 조회 기능
 
 ### service
