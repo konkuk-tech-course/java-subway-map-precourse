@@ -43,4 +43,9 @@ public class StationRepository {
         }
         stations.remove(name);
     }
+
+    // 테스트 초기화용 메서드
+    public void clear() {
+        stations.clear();
+    }
 }
