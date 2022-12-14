@@ -14,7 +14,7 @@ public class StationRepository {
 
     private StationRepository(){}
 
-    public StationRepository getInstance() {
+    public static StationRepository getInstance() {
         return StationRepository.InstanceHolder.INSTANCE;
     }
 
