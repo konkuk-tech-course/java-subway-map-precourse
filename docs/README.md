@@ -10,9 +10,9 @@
     - [x] 조회 기능
 
 ### service
-- [ ] Station 생성
-- [ ] Station 삭제
-- [ ] Station 조회
+- [x] Station 등록
+- [x] Station 삭제
+- [x] Station 조회
 
 ### view
 - [ ] 옵션 입력
