@@ -18,7 +18,7 @@ public class StationRepository {
         return StationRepository.InstanceHolder.INSTANCE;
     }
 
-    public Set<String> stations() {
+    public Set<String> findAllStations() {
         return Collections.unmodifiableSet(stations.keySet());
     }
 
