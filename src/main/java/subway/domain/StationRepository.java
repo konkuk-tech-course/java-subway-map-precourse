@@ -6,7 +6,17 @@ import java.util.List;
 import java.util.Objects;
 
 public class StationRepository {
+    private static class InstanceHolder {
+        private static final StationRepository INSTANCE = new StationRepository();
+    }
+
     private static final List<Station> stations = new ArrayList<>();
+    
+    private StationRepository(){}
+
+    public static StationRepository getInstance() {
+        return StationRepository.InstanceHolder.INSTANCE;
+    }
 
     public static List<Station> stations() {
         return Collections.unmodifiableList(stations);
