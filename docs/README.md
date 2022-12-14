@@ -1,13 +1,13 @@
 # 기능 목록
 ## 역 관련 기능
 ### domain
-- [ ] Station 클래스 구현
-- [ ] StationRepository 구현
-    - [ ] 유효성 검증
-        - [ ] 중복 검사
-        - [ ] 에러메세지 추가
-    - [ ] 조회 기능
-    - [ ] 길이 유효성 검증
+- [x] Station 클래스 구현
+    - [x] 길이 유효성 검증
+- [x] StationRepository 구현
+    - [x] 유효성 검증
+        - [x] 중복 검사
+        - [x] 에러메세지 추가
+    - [x] 조회 기능
 
 ### service
 - [ ] Station 생성
