@@ -22,11 +22,14 @@ public class StationRepository {
     }
 
     public void addStation(Station station) {
+        validate(station.getName());
         stations.put(station.getName(), station);
     }
 
-    private void validate(Station station) {
-
+    private void validate(String name) {
+        if (hasStation(name)) {
+            throw new IllegalArgumentException(DomainErrorMessage.DUPLICATE_STATION.get());
+        }
     }
 
     public boolean hasStation(String name) {
