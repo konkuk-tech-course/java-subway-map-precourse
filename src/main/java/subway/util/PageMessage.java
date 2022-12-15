@@ -8,4 +8,5 @@ public class PageMessage {
             "4. 지하철 노선도 출력\n" +
             "Q. 종료";
 
+    public static final String INPUT_FUNCTION= "## 원하는 기능을 선택하세요.";
 }
