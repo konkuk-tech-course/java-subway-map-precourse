@@ -2,7 +2,7 @@ package subway.view.constant.menu;
 
 import subway.view.constant.Prefix;
 
-public enum LineMenu {
+public enum LineMenu implements Menu {
     REGISTER_MENU("1. 노선 등록"),
     DELETE_MENU("2. 노선 삭제"),
     FIND_ALL_MENU("3. 노선 조회"),
@@ -14,7 +14,8 @@ public enum LineMenu {
         this.menu = menu;
     }
 
-    public String get() {
+    @Override
+    public String getMenu() {
         return menu;
     }
 }

@@ -1,6 +1,6 @@
 package subway.view.constant.menu;
 
-public enum StationMenu {
+public enum StationMenu implements Menu {
     REGISTER_MENU("1. 역 등록"),
     DELETE_MENU("2. 역 삭제"),
     FIND_ALL_MENU("3. 역 조회"),
@@ -12,7 +12,8 @@ public enum StationMenu {
         this.menu = menu;
     }
 
-    public String get() {
+    @Override
+    public String getMenu() {
         return menu;
     }
 }
