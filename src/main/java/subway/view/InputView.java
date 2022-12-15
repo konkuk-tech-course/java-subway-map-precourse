@@ -1,9 +1,13 @@
 package subway.view;
 
+import subway.domain.Station;
 import subway.util.Reader;
 import subway.view.constant.Prefix;
+import subway.view.constant.menu.MainMenu;
 import subway.view.constant.menu.Menu;
+import subway.view.constant.menu.StationMenu;
 import subway.view.constant.phrase.MainPhrase;
+import subway.view.constant.phrase.StationPhrase;
 
 import java.io.Console;
 import java.util.Arrays;
@@ -21,8 +25,17 @@ public class InputView {
 
     public int readMainOption() {
         printPhrase(MainPhrase.TITLE.get());
+        printMenu(MainMenu.class);
         String input = Reader.readLine().trim();
         ViewValidator.validateMainOption(input);
+        return Integer.parseInt(input);
+    }
+
+    public int readStationOption() {
+        printPhrase(StationPhrase.TITLE.get());
+        printMenu(StationMenu.class);
+        String input = Reader.readLine().trim();
+        ViewValidator.validateStationOption(input);
         return Integer.parseInt(input);
     }
 
