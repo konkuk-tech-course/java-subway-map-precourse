@@ -16,6 +16,10 @@ public class Line {
         return name;
     }
 
+    public void addStation(Station station) {
+        stations.add(station);
+    }
+
     public void addStation(int order, Station station) {
         stations.add(orderToIndex(order), station);
     }
