@@ -3,10 +3,12 @@ package subway.view;
 import subway.domain.Station;
 import subway.util.Reader;
 import subway.view.constant.Prefix;
+import subway.view.constant.menu.LineMenu;
 import subway.view.constant.menu.MainMenu;
 import subway.view.constant.menu.Menu;
 import subway.view.constant.menu.StationMenu;
 import subway.view.constant.phrase.CommonPhrase;
+import subway.view.constant.phrase.LinePhrase;
 import subway.view.constant.phrase.MainPhrase;
 import subway.view.constant.phrase.StationPhrase;
 
@@ -57,6 +59,16 @@ public class InputView {
     private String readNonEmptyInput() {
         String input = Reader.readLine();
         ViewValidator.validateNonEmptyInput(input);
+        return input;
+    }
+
+    public String readLineOption() {
+        printPhrase(LinePhrase.TITLE.get());
+        printMenu(LineMenu.class);
+        insertLineBreak();
+        printPhrase(CommonPhrase.OPTION_INPUT.get());
+        String input = Reader.readLine().trim();
+        ViewValidator.validateLineOption(input);
         return input;
     }
 
