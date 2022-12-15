@@ -26,4 +26,8 @@ public class LineService {
         lineRepository.addLine(line);
     }
 
+    public void removeLine(String name) {
+        lineRepository.deleteLineByName(name);
+    }
+
 }
