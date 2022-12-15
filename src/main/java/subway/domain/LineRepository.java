@@ -6,7 +6,16 @@ import java.util.List;
 import java.util.Objects;
 
 public class LineRepository {
-    private static final List<Line> lines = new ArrayList<>();
+    private static final List<Line> lines;
+
+    static {
+        List<Line> defaultLine = List.of(
+                new Line("2호선"),
+                new Line("3호선"),
+                new Line("신분당선")
+        );
+        lines = new ArrayList<>(defaultLine);
+    }
 
     public static List<Line> lines() {
         return Collections.unmodifiableList(lines);
