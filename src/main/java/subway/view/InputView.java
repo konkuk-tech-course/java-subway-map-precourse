@@ -6,6 +6,7 @@ import subway.view.constant.Prefix;
 import subway.view.constant.menu.MainMenu;
 import subway.view.constant.menu.Menu;
 import subway.view.constant.menu.StationMenu;
+import subway.view.constant.phrase.CommonPhrase;
 import subway.view.constant.phrase.MainPhrase;
 import subway.view.constant.phrase.StationPhrase;
 
@@ -26,6 +27,8 @@ public class InputView {
     public int readMainOption() {
         printPhrase(MainPhrase.TITLE.get());
         printMenu(MainMenu.class);
+        insertLineBreak();
+        printPhrase(CommonPhrase.OPTION_INPUT.get());
         String input = Reader.readLine().trim();
         ViewValidator.validateMainOption(input);
         return Integer.parseInt(input);
@@ -34,6 +37,8 @@ public class InputView {
     public int readStationOption() {
         printPhrase(StationPhrase.TITLE.get());
         printMenu(StationMenu.class);
+        insertLineBreak();
+        printPhrase(CommonPhrase.OPTION_INPUT.get());
         String input = Reader.readLine().trim();
         ViewValidator.validateStationOption(input);
         return Integer.parseInt(input);
@@ -47,5 +52,9 @@ public class InputView {
         Arrays.stream(menu.getEnumConstants())
                 .map(Menu::getMenu)
                 .forEach(System.out::println);
+    }
+
+    private void insertLineBreak() {
+        System.out.println();
     }
 }
