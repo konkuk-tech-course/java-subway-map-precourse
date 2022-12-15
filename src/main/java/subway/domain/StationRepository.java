@@ -11,7 +11,8 @@ public class StationRepository {
     static {
         stations = LineRepository.getLines().stream()
                 .flatMap(line -> line.getStations().stream())
-                .distinct().collect(Collectors.toList());
+                .distinct()
+                .collect(Collectors.toList());
     }
 
     public static List<Station> stations() {
