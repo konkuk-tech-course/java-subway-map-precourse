@@ -19,6 +19,12 @@ public class LineRepository {
 
     private final List<Line> lines = new ArrayList<>();
 
+    public Line findLineByName(String name) {
+        return lines.stream().filter(line -> name.equals(line.getName()))
+                .findAny()
+                .orElseThrow();
+    }
+
     public List<String> findAllLines() {
         return lines.stream().map(Line::getName).collect(Collectors.toUnmodifiableList());
     }
