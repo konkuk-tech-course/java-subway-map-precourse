@@ -33,6 +33,10 @@ public class StationRepository {
         }
     }
 
+    public Station findStationByName(String name) {
+        return stations.get(name);
+    }
+
     public boolean hasStation(String name) {
         return stations.containsKey(name);
     }
