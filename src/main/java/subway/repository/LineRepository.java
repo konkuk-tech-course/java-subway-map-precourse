@@ -4,6 +4,7 @@ import subway.domain.Line;
 import subway.domain.Station;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class LineRepository {
     private static class InstanceHolder {
@@ -18,8 +19,8 @@ public class LineRepository {
 
     private final List<Line> lines = new ArrayList<>();
 
-    public List<Line> lines() {
-        return Collections.unmodifiableList(lines);
+    public List<String> lines() {
+        return lines.stream().map(Line::getName).collect(Collectors.toUnmodifiableList());
     }
 
     public void addLine(Line line) {
