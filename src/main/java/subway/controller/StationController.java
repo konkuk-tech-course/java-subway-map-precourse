@@ -1,10 +1,12 @@
 package subway.controller;
 
+import subway.service.StationService;
 import subway.view.InputView;
 import subway.view.OutputView;
-import subway.view.constant.option.MainOptions;
 import subway.view.constant.option.Options;
 import subway.view.constant.option.StationOptions;
+
+import java.util.Set;
 
 public class StationController {
     private static class InstanceHolder {
@@ -13,6 +15,7 @@ public class StationController {
 
     private InputView inputView = InputView.getInstance();
     private OutputView outputView = OutputView.getInstance();
+    private StationService stationService = StationService.getInstance();
 
     private StationController(){}
 
@@ -27,14 +30,35 @@ public class StationController {
 
     private void handleOption(String option) {
         if (option.equals(StationOptions.REGISTER.getOption())) {
-
+            registerStation();
         }
         if (option.equals(StationOptions.DELETE.getOption())) {
-
+            removeStation();
         }
         if (option.equals(StationOptions.FIND_ALL.getOption())) {
-
+            showAllStations();
         }
+    }
+
+    private void registerStation() {
+        String stationName = Requester.requestStringInput(inputView::readStationNameToBeRegistered);
+        stationService.registerStation(stationName);
+    }
+
+    private void removeStation() {
+        String stationName = Requester.requestStringInput(inputView::readStationNameToBeDeleted);
+        try {
+            stationService.removeStation(stationName);
+        } catch (IllegalArgumentException e) {
+            outputView.printErrorMessage(e.getMessage());
+            removeStation();
+        }
+
+    }
+
+    private void showAllStations() {
+        Set<String> stations = stationService.loadAllStations();
+        outputView.printStations(stations);
     }
 
     private boolean isBack(String option) {
