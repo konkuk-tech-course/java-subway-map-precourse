@@ -19,7 +19,7 @@ public class LineRepository {
 
     private final List<Line> lines = new ArrayList<>();
 
-    public List<String> lines() {
+    public List<String> findAllLines() {
         return lines.stream().map(Line::getName).collect(Collectors.toUnmodifiableList());
     }
 
