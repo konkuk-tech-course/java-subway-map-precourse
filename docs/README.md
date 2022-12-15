@@ -22,7 +22,7 @@
 - [x] Station 생성
     - [x] 이름 입력받기
     - [x] 비어있지 않은 값 검증
-- [ ] Station 조회
+- [x] Station 조회
 
 ### controller
 - [ ] StationController 생성
