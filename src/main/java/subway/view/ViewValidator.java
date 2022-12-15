@@ -6,6 +6,12 @@ import subway.view.constant.ViewErrorMessage;
 import java.util.regex.Pattern;
 
 public class ViewValidator {
+    public static void validateNonEmptyInput(String input) {
+        if (isEmpty(input)) {
+            throw new IllegalArgumentException(ViewErrorMessage.EMPTY.get());
+        }
+    }
+
     public static void validateMainOption(String input) {
         if (isEmpty(input)) {
             throw new IllegalArgumentException(ViewErrorMessage.EMPTY.get());
