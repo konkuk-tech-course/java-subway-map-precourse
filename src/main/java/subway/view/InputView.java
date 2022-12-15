@@ -7,10 +7,7 @@ import subway.view.constant.menu.LineMenu;
 import subway.view.constant.menu.MainMenu;
 import subway.view.constant.menu.Menu;
 import subway.view.constant.menu.StationMenu;
-import subway.view.constant.phrase.CommonPhrase;
-import subway.view.constant.phrase.LinePhrase;
-import subway.view.constant.phrase.MainPhrase;
-import subway.view.constant.phrase.StationPhrase;
+import subway.view.constant.phrase.*;
 
 import java.io.Console;
 import java.util.Arrays;
@@ -89,6 +86,26 @@ public class InputView {
 
     public String readLineNameToBeDeleted() {
         printPhrase(LinePhrase.DELETE.get());
+        return readNonEmptyInput();
+    }
+
+    public String readSectionOption() {
+        printPhrase(StationPhrase.TITLE.get());
+        printMenu(StationMenu.class);
+        insertLineBreak();
+        printPhrase(CommonPhrase.OPTION_INPUT.get());
+        String input = Reader.readLine().trim();
+        ViewValidator.validateSectionOption(input);
+        return input;
+    }
+
+    public String readLineNameToBeEdited() {
+        printPhrase(SectionPhrase.REGISTER_LINE_INPUT.get());
+        return readNonEmptyInput();
+    }
+
+    public String readStationNameToBeAdded() {
+        printPhrase(SectionPhrase.REGISTER_STATION_INPUT.get());
         return readNonEmptyInput();
     }
 
