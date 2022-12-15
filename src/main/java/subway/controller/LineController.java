@@ -43,7 +43,7 @@ public class LineController {
     }
 
     private void registerLine() {
-        String lineName = Requester.requestStringInput(inputView::readStationNameToBeRegistered);
+        String lineName = Requester.requestStringInput(inputView::readLineNameToBeRegistered);
         String startStationName = Requester.requestStringInput(inputView::readStartStationName);
         String endStationName = Requester.requestStringInput(inputView::readEndStationName);
         try {
