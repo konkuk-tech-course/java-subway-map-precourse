@@ -1,5 +1,7 @@
 package subway.view;
 
+import subway.view.constant.Prefix;
+
 public class OutputView {
     private static class InstanceHolder {
         private static final OutputView INSTANCE = new OutputView();
@@ -9,5 +11,13 @@ public class OutputView {
 
     public static OutputView getInstance() {
         return OutputView.InstanceHolder.INSTANCE;
+    }
+    
+    public void printInfoPhrase(String phrase) {
+        System.out.println(Prefix.INFO.get() + phrase);
+    }
+
+    public void printErrorMessage(String errorMessage) {
+        System.out.println(Prefix.ERROR.get() + errorMessage);
     }
 }
