@@ -25,7 +25,7 @@ public class MainController {
         do {
             option = Requester.requestStringInput(inputView::readMainOption);
             handleOption(option);
-        } while (isQuit(option));
+        } while (isRunning(option));
     }
 
     private void handleOption(String option) {
@@ -43,7 +43,7 @@ public class MainController {
         }
     }
 
-    private boolean isQuit(String option) {
-        return option.equals(Options.QUIT.get());
+    private boolean isRunning(String option) {
+        return !option.equals(Options.QUIT.get());
     }
 }
