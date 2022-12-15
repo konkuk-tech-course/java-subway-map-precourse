@@ -76,4 +76,32 @@ public class InputView {
 
         return lineToRemove;
     }
+
+    // -------------- 구간 관리 ------------
+    public String readSectionFunction() {
+        System.out.println("## 원하는 기능을 선택하세요.");
+        String input = scanner.nextLine();
+        validator.validateWhenTotalOptionsAreThree(input);
+        return input;
+    }
+
+    public String readLineToRegisterInSection() {
+        System.out.println("## 노선을 입력하세요.");
+        String input = scanner.nextLine();
+        // TODO: VALIDATE
+        return input;
+    }
+    public String readStationToRegisterInSection() {
+        System.out.println("## 역이름을 입력하세요.");
+        String input = scanner.nextLine();
+        // TODO: VALIDATE
+        return input;
+    }
+    public int readOrderToRegisterInSection() {
+        System.out.println("## 순서를 입력하세요.");
+        String input = scanner.nextLine();
+        // TODO: VALIDATE
+        int order = Integer.parseInt(input);
+        return order;
+    }
 }

@@ -133,3 +133,10 @@ B. 돌아가기
 </details>
 
 ### 테스트 할 목록
+
+### refactoring 목록
+
+ - 1,2,3,4,Q,B를 enum으로 만들기
+ - Controller 기능에 따라 service Layer로 분리 시키기.
+ - 
+

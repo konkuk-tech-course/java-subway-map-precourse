@@ -59,8 +59,17 @@ public class OutputView {
         lines.forEach(line -> System.out.printf(LIST_FORMAT, line));
     }
 
-    public void printSubwayLineMap() {
-
+    public void printWhenSectionRegisteredSuccessfully() {
+        System.out.println("[INFO] 구간이 등록되었습니다.");
+    }
+    public void printSubwayLineMap(List<Line> defaultLines) {
+        System.out.println("## 지하철 노선도");
+        for (Line defaultLine : defaultLines) {
+            System.out.printf(LIST_FORMAT, defaultLine.getName());
+            System.out.printf(LIST_FORMAT, "---");
+            defaultLine.getStations().forEach(i -> System.out.printf(LIST_FORMAT, i.getName(4)));
+            System.out.println();
+        }
     }
 
 }
