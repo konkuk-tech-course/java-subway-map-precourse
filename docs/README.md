@@ -31,8 +31,25 @@
     - [x] 역 조회
 
 ## 노선 관련 기능
+### domain
+- [ ] Line 클래스 구현
+    - [ ] Line에 존재하는 역 조회 기능
+- [ ] LineRepository 구현
 
+### service
+- [ ] Station 등록
+- [ ] Station 삭제
+- [ ] Station 조회
 
+### view
+- [ ] 옵션 입력
+- [ ] 노선 이름 입력
+- [ ] 상행 종점 역 이름 입력
+- [ ] 하행 종점 역 이름 입력
+- [ ] 삭제할 노선 이름 입력
+
+### controller
+- [ ] LineController
 
 ## 구간 추가 기능
 
