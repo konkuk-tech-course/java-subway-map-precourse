@@ -25,7 +25,10 @@
 - [x] Station 조회
 
 ### controller
-- [ ] StationController 생성
+- [ ] StationController
+    - [ ] 역 등록
+    - [ ] 역 삭제
+    - [ ] 역 조회
 
 ## 노선 관련 기능
 
