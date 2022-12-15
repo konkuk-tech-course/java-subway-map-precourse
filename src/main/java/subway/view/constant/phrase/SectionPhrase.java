@@ -19,8 +19,4 @@ public enum SectionPhrase {
     public String getMenu() {
         return menu;
     }
-
-    public String getMenuWithPreFix() {
-        return Prefix.PHRASE.get() + menu;
-    }
 }

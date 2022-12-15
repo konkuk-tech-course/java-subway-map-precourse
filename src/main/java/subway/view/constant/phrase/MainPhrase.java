@@ -15,8 +15,4 @@ public enum MainPhrase {
     public String get() {
         return menu;
     }
-
-    public String getMenuWithPreFix() {
-        return Prefix.PHRASE.get() + menu;
-    }
 }
