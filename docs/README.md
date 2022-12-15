@@ -32,10 +32,10 @@
 
 ## 노선 관련 기능
 ### domain
-- [ ] Line 클래스 구현
-    - [ ] Line에 존재하는 역 조회 기능
-    - [ ] 역 추가 기능
-- [ ] LineRepository 구현
+- [x] Line 클래스 구현
+    - [x] Line에 존재하는 역 조회 기능
+    - [x] 역 추가 기능
+- [x] LineRepository 구현
 
 ### service
 - [ ] Station 등록
