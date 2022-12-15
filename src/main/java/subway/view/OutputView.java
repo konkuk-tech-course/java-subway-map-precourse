@@ -26,4 +26,8 @@ public class OutputView {
     public void printErrorMessage(String errorMessage) {
         System.out.println(Prefix.ERROR.get() + errorMessage);
     }
+
+    public void insertLineBreak() {
+        System.out.println();
+    }
 }
