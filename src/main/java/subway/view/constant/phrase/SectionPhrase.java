@@ -1,7 +1,5 @@
 package subway.view.constant.phrase;
 
-import subway.view.constant.Prefix;
-
 public enum SectionPhrase {
     TITLE("구간 관리 화면"),
     REGISTER_LINE_INPUT("노선을 입력하세요."),
@@ -10,13 +8,13 @@ public enum SectionPhrase {
     DELETE_LINE_INPUT("삭제할 구간의 노선을 입력하세요."),
     DELETE_STATION_INPUT("삭제할 구간의 역을 입력하세요.");
 
-    private final String menu;
+    private final String phrase;
 
-    SectionPhrase(String menu) {
-        this.menu = menu;
+    SectionPhrase(String phrase) {
+        this.phrase = phrase;
     }
 
-    public String getMenu() {
-        return menu;
+    public String get() {
+        return phrase;
     }
 }
