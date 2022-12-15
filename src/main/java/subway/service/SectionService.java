@@ -22,4 +22,9 @@ public class SectionService {
         Line line = lineRepository.findLineByName(lineName);
         line.addStation(order, stationRepository.findStationByName(stationName));
     }
+
+    public void deleteSection(String lineName, String stationName) {
+        Line line = lineRepository.findLineByName(lineName);
+        line.deleteStation(stationName);
+    }
 }
