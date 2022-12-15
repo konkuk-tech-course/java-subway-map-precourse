@@ -38,9 +38,9 @@
 - [x] LineRepository 구현
 
 ### service
-- [ ] Line 등록
-- [ ] Line 삭제
-- [ ] Line 조회
+- [x] Line 등록
+- [x] Line 삭제
+- [x] Line 조회
 
 ### view
 - [ ] 옵션 입력
