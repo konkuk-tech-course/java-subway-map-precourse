@@ -1,24 +1,32 @@
 package subway.repository;
 
 import subway.domain.Line;
+import subway.domain.Station;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 
 public class LineRepository {
-    private static final List<Line> lines = new ArrayList<>();
+    private static class InstanceHolder {
+        private static final LineRepository INSTANCE = new LineRepository();
+    }
 
-    public static List<Line> lines() {
+    private LineRepository(){}
+
+    public static LineRepository getInstance() {
+        return LineRepository.InstanceHolder.INSTANCE;
+    }
+
+    private final List<Line> lines = new ArrayList<>();
+
+    public List<Line> lines() {
         return Collections.unmodifiableList(lines);
     }
 
-    public static void addLine(Line line) {
+    public void addLine(Line line) {
         lines.add(line);
     }
 
-    public static boolean deleteLineByName(String name) {
+    public boolean deleteLineByName(String name) {
         return lines.removeIf(line -> Objects.equals(line.getName(), name));
     }
 }
