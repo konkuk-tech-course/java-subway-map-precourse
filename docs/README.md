@@ -34,6 +34,7 @@
 ### domain
 - [ ] Line 클래스 구현
     - [ ] Line에 존재하는 역 조회 기능
+    - [ ] 역 추가 기능
 - [ ] LineRepository 구현
 
 ### service
