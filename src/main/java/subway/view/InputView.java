@@ -44,8 +44,17 @@ public class InputView {
         return input;
     }
 
-    public String readStationName() {
+    public String readStationNameToBeRegistered() {
         printPhrase(StationPhrase.REGISTER.get());
+        return readNonEmptyInput();
+    }
+
+    public String readStationNameToBeDeleted() {
+        printPhrase(StationPhrase.DELETE.get());
+        return readNonEmptyInput();
+    }
+
+    private String readNonEmptyInput() {
         String input = Reader.readLine();
         ViewValidator.validateNonEmptyInput(input);
         return input;
