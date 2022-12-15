@@ -106,5 +106,3 @@ B. 돌아가기
 </details>
 
 ### 테스트 할 목록
-- convertMoneyToRandomCoin 메서드 통해서 money를 랜덤 코인으로 변환하는 메서드 테스트
-- 
