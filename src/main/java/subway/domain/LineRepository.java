@@ -1,25 +1,22 @@
 package subway.domain;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 
 public class LineRepository {
     private static final List<Line> lines;
 
     static {
         List<Line> defaultLine = List.of(
-                new Line("2호선", List.of(
+                new Line("2호선", Arrays.asList(
                         new Station("교대역"),
                         new Station("강남역"),
                         new Station("역삼역"))),
-                new Line("3호선", List.of(
+                new Line("3호선", Arrays.asList(
                         new Station("교대역"),
                         new Station("남부터미널역"),
                         new Station("양재역"),
                         new Station("매봉역"))),
-                new Line("신분당선", List.of(
+                new Line("신분당선",Arrays.asList(
                         new Station("강남역"),
                         new Station("양재역"),
                         new Station("양재시민의숲역")))
