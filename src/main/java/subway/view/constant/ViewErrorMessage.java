@@ -12,6 +12,6 @@ public enum ViewErrorMessage {
     }
 
     public String get() {
-        return Prefix.ERROR.get() + message;
+        return message;
     }
 }
