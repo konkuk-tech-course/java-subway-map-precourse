@@ -1,7 +1,12 @@
 package subway.domain;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
+
 public class Line {
     private String name;
+    private List<Station> stations = new ArrayList<>();
 
     public Line(String name) {
         this.name = name;
@@ -11,5 +16,8 @@ public class Line {
         return name;
     }
 
-    // 추가 기능 구현
+    public List<String> findAllStations() {
+        return stations.stream().map(Station::getName)
+                .collect(Collectors.toList());
+    }
 }
