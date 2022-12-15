@@ -33,4 +33,9 @@ public class Line {
     public int hashCode() {
         return Objects.hash(getName(), getStations());
     }
+
+    @Override
+    public String toString() {
+        return this.name;
+    }
 }
