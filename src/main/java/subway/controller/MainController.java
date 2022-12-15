@@ -13,6 +13,7 @@ public class MainController {
     private InputView inputView = InputView.getInstance();
     private OutputView outputView = OutputView.getInstance();
     private StationController stationController = StationController.getInstance();
+    private LineController lineController = LineController.getInstance();
 
     private MainController(){}
 
@@ -33,7 +34,7 @@ public class MainController {
             stationController.operate();
         }
         if (option.equals(MainOptions.LINE.getOption())) {
-
+            lineController.operate();
         }
         if (option.equals(MainOptions.SECTION.getOption())) {
 
