@@ -26,7 +26,7 @@ public class LineController {
     }
 
     public void operate() {
-        String option = Requester.requestStringInput(inputView::readStationOption);
+        String option = Requester.requestStringInput(inputView::readLineOption);
         handleOption(option);
     }
 
