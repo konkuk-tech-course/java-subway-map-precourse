@@ -53,7 +53,20 @@
 - [x] LineController
 
 ## 구간 추가 기능
+### service
+- [ ] 구간 등록
+- [ ] 구간 삭제
 
+### view
+- [ ] 옵션 입력
+- [ ] 노선 입력
+- [ ] 역 이름 입력
+- [ ] 순서 입력
+- [ ] 삭제할 노선 이름 입력
+- [ ] 삭제할 구간의 역 입력
+
+### controller
+- [ ] SectionController
 
 ## util
 - [x] Reader 클래스
