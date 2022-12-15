@@ -72,6 +72,26 @@ public class InputView {
         return input;
     }
 
+    public String readLineNameToBeRegistered() {
+        printPhrase(LinePhrase.REGISTER.get());
+        return readNonEmptyInput();
+    }
+
+    public String readStartStationName() {
+        printPhrase(LinePhrase.REGISTER_START_STATION.get());
+        return readNonEmptyInput();
+    }
+
+    public String readEndStationName() {
+        printPhrase(LinePhrase.REGISTER_END_STATION.get());
+        return readNonEmptyInput();
+    }
+
+    public String readLineNameToBeDeleted() {
+        printPhrase(LinePhrase.DELETE.get());
+        return readNonEmptyInput();
+    }
+
     public void printPhrase(String phrase) {
         System.out.println(Prefix.PHRASE.get() + phrase);
     }
