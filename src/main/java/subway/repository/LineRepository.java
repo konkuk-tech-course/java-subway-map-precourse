@@ -30,4 +30,8 @@ public class LineRepository {
     public boolean deleteLineByName(String name) {
         return lines.removeIf(line -> Objects.equals(line.getName(), name));
     }
+
+    public boolean hasLine(String name) {
+        return lines.stream().anyMatch(line -> name.equals(line.getName()));
+    }
 }
