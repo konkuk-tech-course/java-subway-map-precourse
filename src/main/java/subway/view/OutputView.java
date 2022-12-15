@@ -2,6 +2,8 @@ package subway.view;
 
 import subway.view.constant.Prefix;
 
+import java.util.Set;
+
 public class OutputView {
     private static class InstanceHolder {
         private static final OutputView INSTANCE = new OutputView();
@@ -12,7 +14,11 @@ public class OutputView {
     public static OutputView getInstance() {
         return OutputView.InstanceHolder.INSTANCE;
     }
-    
+
+    public void printStations(Set<String> stations) {
+        stations.forEach(this::printInfoPhrase);
+    }
+
     public void printInfoPhrase(String phrase) {
         System.out.println(Prefix.INFO.get() + phrase);
     }
