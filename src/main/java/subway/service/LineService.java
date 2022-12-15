@@ -30,4 +30,7 @@ public class LineService {
         lineRepository.deleteLineByName(name);
     }
 
+    public List<String> loadAllLines() {
+        return lineRepository.findAllLines();
+    }
 }
