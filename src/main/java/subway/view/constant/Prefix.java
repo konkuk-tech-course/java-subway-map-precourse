@@ -1,7 +1,9 @@
 package subway.view.constant;
 
 public enum Prefix {
-    PHRASE("##");
+    PHRASE("##"),
+    INFO("[INFO]"),
+    ERROR("[ERROR]");
 
     private final String prefix;
 
