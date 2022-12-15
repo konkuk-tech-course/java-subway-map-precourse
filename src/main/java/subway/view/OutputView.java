@@ -2,6 +2,7 @@ package subway.view;
 
 import subway.view.constant.Prefix;
 
+import java.util.List;
 import java.util.Set;
 
 public class OutputView {
@@ -19,6 +20,10 @@ public class OutputView {
         stations.forEach(this::printInfoPhrase);
     }
 
+    public void printLines(List<String> stations) {
+        stations.forEach(this::printInfoPhrase);
+    }
+    
     public void printInfoPhrase(String phrase) {
         System.out.println(Prefix.INFO.get() + phrase);
     }
