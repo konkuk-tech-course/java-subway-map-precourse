@@ -1,7 +1,16 @@
 package subway.view;
 
 import subway.view.constant.Prefix;
+import subway.view.constant.menu.LineMenu;
+import subway.view.constant.menu.MainMenu;
+import subway.view.constant.menu.Menu;
+import subway.view.constant.menu.StationMenu;
+import subway.view.constant.phrase.CommonPhrase;
+import subway.view.constant.phrase.LinePhrase;
+import subway.view.constant.phrase.MainPhrase;
+import subway.view.constant.phrase.StationPhrase;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Set;
 
@@ -22,6 +31,41 @@ public class OutputView {
 
     public void printLines(List<String> stations) {
         stations.forEach(this::printInfoPhrase);
+    }
+
+    public void printMainScreen() {
+        printPhrase(MainPhrase.TITLE.get());
+        printMenu(MainMenu.class);
+    }
+
+    public void printStationScreen() {
+        printPhrase(StationPhrase.TITLE.get());
+        printMenu(StationMenu.class);
+    }
+
+    public void printLineScreen() {
+        printPhrase(LinePhrase.TITLE.get());
+        printMenu(LineMenu.class);
+    }
+
+    public void printSectionScreen() {
+        printPhrase(StationPhrase.TITLE.get());
+        printMenu(StationMenu.class);
+    }
+
+    public void printOptionRequestPhrase() {
+        insertLineBreak();
+        printPhrase(CommonPhrase.OPTION_INPUT.get());
+    }
+
+    public <T extends Menu> void printMenu(Class<T> menu) {
+        Arrays.stream(menu.getEnumConstants())
+                .map(Menu::getMenu)
+                .forEach(System.out::println);
+    }
+
+    public void printPhrase(String phrase) {
+        System.out.println(Prefix.PHRASE.get() + phrase);
     }
     
     public void printInfoPhrase(String phrase) {

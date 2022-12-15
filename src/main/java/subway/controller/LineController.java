@@ -26,6 +26,8 @@ public class LineController {
     }
 
     public void operate() {
+        outputView.printLineScreen();
+        outputView.printOptionRequestPhrase();
         String option = Requester.requestStringInput(inputView::readLineOption);
         handleOption(option);
     }
@@ -43,9 +45,9 @@ public class LineController {
     }
 
     private void registerLine() {
-        String lineName = Requester.requestStringInput(inputView::readLineNameToBeRegistered);
-        String startStationName = Requester.requestStringInput(inputView::readStartStationName);
-        String endStationName = Requester.requestStringInput(inputView::readEndStationName);
+        String lineName = Requester.requestStringInput(inputView::readNonEmptyInput);
+        String startStationName = Requester.requestStringInput(inputView::readNonEmptyInput);
+        String endStationName = Requester.requestStringInput(inputView::readNonEmptyInput);
         try {
             lineService.registerLine(lineName, startStationName, endStationName);
         } catch (IllegalArgumentException e) {
@@ -56,7 +58,7 @@ public class LineController {
     }
 
     private void removeLine() {
-        String lineName = Requester.requestStringInput(inputView::readLineNameToBeDeleted);
+        String lineName = Requester.requestStringInput(inputView::readNonEmptyInput);
         try {
             lineService.removeLine(lineName);
         } catch (IllegalArgumentException e) {

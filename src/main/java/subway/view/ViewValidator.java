@@ -52,6 +52,9 @@ public class ViewValidator {
         }
     }
 
+    // TODO: 구간 옵션 입력 유효성 검증
+//    public static void
+
     private static boolean isEmpty(String input) {
         return Pattern.matches(ValidationRegex.EMPTY.get(), input);
     }

@@ -24,6 +24,8 @@ public class MainController {
     public void operate() {
         String option;
         do {
+            outputView.printMainScreen();
+            outputView.printOptionRequestPhrase();
             option = Requester.requestStringInput(inputView::readMainOption);
             handleOption(option);
         } while (isRunning(option));
