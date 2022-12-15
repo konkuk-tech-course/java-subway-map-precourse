@@ -1,5 +1,6 @@
 package subway.service;
 
+import subway.domain.Line;
 import subway.repository.LineRepository;
 import subway.repository.StationRepository;
 
@@ -17,5 +18,8 @@ public class SectionService {
         return SectionService.InstanceHolder.INSTANCE;
     }
 
-    
+    public void registerSection(String lineName, String stationName, int order) {
+        Line line = lineRepository.findLineByName(lineName);
+        line.addStation(order, stationRepository.findStationByName(stationName));
+    }
 }
