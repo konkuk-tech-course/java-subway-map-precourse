@@ -44,6 +44,13 @@ public class InputView {
         return Integer.parseInt(input);
     }
 
+    public String readStationName() {
+        printPhrase(StationPhrase.REGISTER.get());
+        String input = Reader.readLine();
+        ViewValidator.validateNonEmptyInput(input);
+        return input;
+    }
+
     public void printPhrase(String phrase) {
         System.out.println(Prefix.PHRASE.get() + phrase);
     }
