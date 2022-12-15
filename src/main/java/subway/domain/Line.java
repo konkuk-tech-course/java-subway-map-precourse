@@ -2,6 +2,7 @@ package subway.domain;
 
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 public class Line {
@@ -26,6 +27,10 @@ public class Line {
 
     private int orderToIndex(int order) {
         return --order;
+    }
+
+    public void deleteStation(String stationName) {
+        stations.removeIf(station -> Objects.equals(station.getName(), stationName));
     }
 
     public List<String> findAllStations() {
