@@ -5,6 +5,7 @@ import subway.view.InputView;
 import subway.view.OutputView;
 import subway.view.constant.option.Options;
 import subway.view.constant.option.StationOptions;
+import subway.view.constant.phrase.StationPhrase;
 
 import java.util.Set;
 
@@ -43,6 +44,7 @@ public class StationController {
     private void registerStation() {
         String stationName = Requester.requestStringInput(inputView::readStationNameToBeRegistered);
         stationService.registerStation(stationName);
+        outputView.printInfoPhrase(StationPhrase.REGISTER_INFO.get());
     }
 
     private void removeStation() {
@@ -53,7 +55,7 @@ public class StationController {
             outputView.printErrorMessage(e.getMessage());
             removeStation();
         }
-
+        outputView.printInfoPhrase(StationPhrase.DELETE_INFO.get());
     }
 
     private void showAllStations() {
