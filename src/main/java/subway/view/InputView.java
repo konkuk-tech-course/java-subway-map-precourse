@@ -24,24 +24,24 @@ public class InputView {
         return InputView.InstanceHolder.INSTANCE;
     }
 
-    public int readMainOption() {
+    public String readMainOption() {
         printPhrase(MainPhrase.TITLE.get());
         printMenu(MainMenu.class);
         insertLineBreak();
         printPhrase(CommonPhrase.OPTION_INPUT.get());
         String input = Reader.readLine().trim();
         ViewValidator.validateMainOption(input);
-        return Integer.parseInt(input);
+        return input;
     }
 
-    public int readStationOption() {
+    public String readStationOption() {
         printPhrase(StationPhrase.TITLE.get());
         printMenu(StationMenu.class);
         insertLineBreak();
         printPhrase(CommonPhrase.OPTION_INPUT.get());
         String input = Reader.readLine().trim();
         ViewValidator.validateStationOption(input);
-        return Integer.parseInt(input);
+        return input;
     }
 
     public String readStationName() {
