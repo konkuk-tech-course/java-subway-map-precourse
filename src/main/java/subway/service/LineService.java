@@ -49,7 +49,10 @@ public class LineService {
     }
 
     public void removeLine(String name) {
-        lineRepository.deleteLineByName(name);
+        boolean isRemoved = lineRepository.deleteLineByName(name);
+        if (!isRemoved) {
+            throw new IllegalArgumentException(DomainErrorMessage.NOT_EXIST_Line.get());
+        }
     }
 
     public List<String> loadAllLines() {
