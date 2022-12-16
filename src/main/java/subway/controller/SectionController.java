@@ -48,7 +48,7 @@ public class SectionController {
             registerSection();
         }
         if (option.equals(SectionOptions.DELETE.getOption())) {
-
+            removeSection();
         }
     }
 
@@ -91,6 +91,13 @@ public class SectionController {
         return order;
     }
 
-        }
+    public void removeSection() {
+        String lineName = Requester.requestStringInput(() ->
+                controlExistLineNameInput(SectionPhrase.REGISTER_LINE_INPUT.get()));
+        String stationName = Requester.requestStringInput(() ->
+                controlExistStationNameInput(SectionPhrase.REGISTER_STATION_INPUT.get()));
+
+        sectionService.deleteSection(lineName, stationName);
+        outputView.printInfoPhrase(SectionPhrase.DELETE_INFO.get());
     }
 }
