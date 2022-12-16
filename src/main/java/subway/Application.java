@@ -1,22 +1,14 @@
 package subway;
 
 import subway.controller.MainController;
-import subway.domain.Line;
 import subway.domain.Station;
-import subway.repository.LineRepository;
 import subway.repository.StationRepository;
 import subway.service.LineService;
-import subway.view.InputView;
-
-import java.util.Scanner;
 
 public class Application {
     public static void main(String[] args) {
-        final Scanner scanner = new Scanner(System.in);
-        // TODO: 프로그램 구현
         initStations();
         initLines();
-        InputView inputView = InputView.getInstance();
         MainController mainController = MainController.getInstance();
         mainController.operate();
     }
