@@ -24,11 +24,15 @@ public class MainController {
     public void operate() {
         String option;
         do {
-            outputView.printMainScreen();
-            outputView.printOptionRequestPhrase();
-            option = Requester.requestStringInput(inputView::readMainOption);
+            option = Requester.requestStringInput(this::selectOption);
             handleOption(option);
         } while (isRunning(option));
+    }
+
+    private String selectOption() {
+        outputView.printMainScreen();
+        outputView.printOptionRequestPhrase();
+        return inputView.readMainOption();
     }
 
     private void handleOption(String option) {

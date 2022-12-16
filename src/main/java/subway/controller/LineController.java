@@ -26,10 +26,14 @@ public class LineController {
     }
 
     public void operate() {
+        String option = Requester.requestStringInput(this::selectOption);
+        handleOption(option);
+    }
+
+    private String selectOption() {
         outputView.printLineScreen();
         outputView.printOptionRequestPhrase();
-        String option = Requester.requestStringInput(inputView::readLineOption);
-        handleOption(option);
+        return inputView.readMainOption();
     }
 
     private void handleOption(String option) {

@@ -25,10 +25,14 @@ public class StationController {
     }
 
     public void operate() {
+        String option = Requester.requestStringInput(this::selectOption);
+        handleOption(option);
+    }
+
+    private String selectOption() {
         outputView.printStationScreen();
         outputView.printOptionRequestPhrase();
-        String option = Requester.requestStringInput(inputView::readStationOption);
-        handleOption(option);
+        return inputView.readMainOption();
     }
 
     private void handleOption(String option) {
