@@ -70,11 +70,12 @@ public class LineController {
     private void removeLine() {
         String lineName = Requester.requestStringInput(() ->
                 controlDeleteLineNameInput(LinePhrase.DELETE.get()));
-        
+
         lineService.removeLine(lineName);
         outputView.printInfoPhrase(LinePhrase.DELETE_INFO.get());
     }
 
+    // TODO: 중복 검증 기능 서비스에서 구현 후 repository 의존성 제거
     private String controlLineNameInput(String phrase) {
         outputView.printPhrase(phrase);
         String lineName = inputView.readNonEmptyInput();
