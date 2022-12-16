@@ -74,14 +74,18 @@ public class LineService {
         return order <= line.getNumberOfStations();
     }
 
-    public boolean canBeAddedToLine(String lineName, String stationName) {
+    public void validateAddableLine(String lineName, String stationName) {
         Line line = lineRepository.findLineByName(lineName);
-        return !line.hasStation(stationName);
+        if (!line.hasStation(stationName)) {
+            throw new IllegalArgumentException(DomainErrorMessage.CANNOT_BE_ADDED_TO_LINE.get());
+        }
     }
 
-    public boolean canBeRemovedFromLine(String lineName, String stationName) {
+    public void validateRemovableLine(String lineName, String stationName) {
         Line line = lineRepository.findLineByName(lineName);
-        return line.hasStation(stationName);
+        if (line.hasStation(stationName)) {
+            throw new IllegalArgumentException(DomainErrorMessage.CANNOT_BE_REMOVED_FROM_LINE.get());
+        }
     }
 
     public List<String> loadAllLines() {
