@@ -7,6 +7,7 @@ import subway.repository.LineRepository;
 import subway.repository.StationRepository;
 
 import java.util.List;
+import java.util.Map;
 
 public class LineService {
     private static class InstanceHolder {
@@ -69,5 +70,9 @@ public class LineService {
 
     public List<String> loadAllLines() {
         return lineRepository.findAllLines();
+    }
+    
+    public Map<String, List<String>> loadAllLinesInformation() {
+        return lineRepository.findAllLinesInformation();
     }
 }
