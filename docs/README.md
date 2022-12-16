@@ -62,7 +62,7 @@
 - [x] 순서 입력
 
 ### controller
-- [ ] SectionController
+- [x] SectionController
 
 ## util
 - [x] Reader 클래스
