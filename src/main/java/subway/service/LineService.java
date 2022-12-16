@@ -45,6 +45,12 @@ public class LineService {
         }
     }
 
+    public void validateExistLineName(String name) {
+        if (!lineRepository.hasLine(name)) {
+            throw new IllegalArgumentException(DomainErrorMessage.DUPLICATE_LINE.get());
+        }
+    }
+
     private void validateStation(String stationName) {
         if (!stationRepository.hasStation(stationName)) {
             throw new IllegalArgumentException(DomainErrorMessage.NOT_EXIST_STATION.get());
