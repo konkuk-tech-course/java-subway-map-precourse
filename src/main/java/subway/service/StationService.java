@@ -33,6 +33,12 @@ public class StationService {
         }
     }
 
+    public void validateNonExistStationName(String name) {
+        if (stationRepository.hasStation(name)) {
+            throw new IllegalArgumentException(DomainErrorMessage.NOT_EXIST_STATION.get());
+        }
+    }
+
     public Set<String> loadAllStations() {
         return stationRepository.findAllStations();
     }
