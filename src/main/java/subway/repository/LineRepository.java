@@ -29,6 +29,12 @@ public class LineRepository {
         return lines.stream().map(Line::getName).collect(Collectors.toUnmodifiableList());
     }
 
+    public Map<String, List<String>> findAllLinesInformation() {
+        Map<String, List<String>> lineInformation = new HashMap<>();
+        lines.forEach(line -> lineInformation.put(line.getName(), line.findAllStations()));
+        return Collections.unmodifiableMap(lineInformation);
+    }
+
     public void addLine(Line line) {
         lines.add(line);
     }
