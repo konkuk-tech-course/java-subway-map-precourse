@@ -29,7 +29,7 @@ public class StationService {
 
     public void validateExistStationName(String name) {
         if (!stationRepository.hasStation(name)) {
-            throw new IllegalArgumentException(DomainErrorMessage.DUPLICATE_STATION.get());
+            throw new IllegalArgumentException(DomainErrorMessage.NOT_EXIST_STATION.get());
         }
     }
 

@@ -47,7 +47,7 @@ public class LineService {
 
     public void validateExistLineName(String name) {
         if (!lineRepository.hasLine(name)) {
-            throw new IllegalArgumentException(DomainErrorMessage.DUPLICATE_LINE.get());
+            throw new IllegalArgumentException(DomainErrorMessage.NOT_EXIST_Line.get());
         }
     }
 
