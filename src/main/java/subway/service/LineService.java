@@ -68,10 +68,20 @@ public class LineService {
         return order <= line.getNumberOfStations();
     }
 
+    public boolean canBeAddedToLine(String lineName, String stationName) {
+        Line line = lineRepository.findLineByName(lineName);
+        return !line.hasStation(stationName);
+    }
+
+    public boolean canBeRemovedFromLine(String lineName, String stationName) {
+        Line line = lineRepository.findLineByName(lineName);
+        return line.hasStation(stationName);
+    }
+
     public List<String> loadAllLines() {
         return lineRepository.findAllLines();
     }
-    
+
     public Map<String, List<String>> loadAllLinesInformation() {
         return lineRepository.findAllLinesInformation();
     }
