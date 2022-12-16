@@ -55,7 +55,7 @@ public class SectionController {
             removeSection();
         }
     }
-    
+
     private void registerSection() {
         String lineName = Requester.requestStringInput(() ->
                 controlExistLineNameInput(SectionPhrase.REGISTER_LINE_INPUT.get()));
@@ -72,7 +72,8 @@ public class SectionController {
         outputView.printInfoPhrase(SectionPhrase.REGISTER_INFO.get());
     }
 
-    private void validateStationForRegistration(String lineName, String stationName) {
+    // TODO: 검증 서비스로 분리
+    prvate void validateStationForRegistration(String lineName, String stationName) {
         if (!stationRepository.hasStation(stationName)) {
             throw new IllegalArgumentException(DomainErrorMessage.NOT_EXIST_STATION.get());
         }
