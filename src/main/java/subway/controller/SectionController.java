@@ -13,6 +13,10 @@ import subway.view.constant.phrase.LinePhrase;
 import subway.view.constant.phrase.SectionPhrase;
 import subway.view.constant.phrase.StationPhrase;
 
+import java.util.function.BiConsumer;
+import java.util.function.BiPredicate;
+import java.util.function.Predicate;
+
 public class SectionController {
     private static class InstanceHolder {
         private static final SectionController INSTANCE = new SectionController();
@@ -51,13 +55,16 @@ public class SectionController {
             removeSection();
         }
     }
-
-    // TODO: 호선에 역이 없음 검증
+    
     private void registerSection() {
         String lineName = Requester.requestStringInput(() ->
                 controlExistLineNameInput(SectionPhrase.REGISTER_LINE_INPUT.get()));
         String stationName = Requester.requestStringInput(() ->
-                controlExistStationNameInput(SectionPhrase.REGISTER_STATION_INPUT.get()));
+                controlExistStationNameInput(
+                        this::validateStationForRegistration,
+                        SectionPhrase.REGISTER_STATION_INPUT.get(),
+                        lineName
+                ));
         int order = Requester.requestNumberInput(() ->
                 controlRegisterOrderInput(SectionPhrase.REGISTER_ORDER_INPUT.get(), lineName));
 
@@ -65,25 +72,15 @@ public class SectionController {
         outputView.printInfoPhrase(SectionPhrase.REGISTER_INFO.get());
     }
 
-    private String controlExistLineNameInput(String phrase) {
-        outputView.printPhrase(phrase);
-        String lineName = inputView.readNonEmptyInput();
-        if (!lineRepository.hasLine(lineName)) {
-            throw new IllegalArgumentException(DomainErrorMessage.NOT_EXIST_Line.get());
-        }
-        return lineName;
-    }
-
-    private String controlExistStationNameInput(String phrase) {
-        outputView.printPhrase(phrase);
-        String stationName = inputView.readNonEmptyInput();
+    private void validateStationForRegistration(String lineName, String stationName) {
         if (!stationRepository.hasStation(stationName)) {
             throw new IllegalArgumentException(DomainErrorMessage.NOT_EXIST_STATION.get());
         }
-        return stationName;
+        if (!lineService.canBeAddedToLine(lineName, stationName)) {
+            throw new IllegalArgumentException(DomainErrorMessage.CANNOT_BE_ADDED_TO_LINE.get());
+        }
     }
 
-    // TODO: 호선에 역이 있어야 함 검증
     private int controlRegisterOrderInput(String phrase, String lineName) {
         outputView.printPhrase(phrase);
         int order = inputView.readOrder();
@@ -97,9 +94,38 @@ public class SectionController {
         String lineName = Requester.requestStringInput(() ->
                 controlExistLineNameInput(SectionPhrase.REGISTER_LINE_INPUT.get()));
         String stationName = Requester.requestStringInput(() ->
-                controlExistStationNameInput(SectionPhrase.REGISTER_STATION_INPUT.get()));
+                controlExistStationNameInput(
+                        this::validateStationForRemove,
+                        SectionPhrase.DELETE_LINE_INPUT.get(),
+                        lineName
+                ));
 
         sectionService.deleteSection(lineName, stationName);
         outputView.printInfoPhrase(SectionPhrase.DELETE_INFO.get());
+    }
+
+    private String controlExistLineNameInput(String phrase) {
+        outputView.printPhrase(phrase);
+        String lineName = inputView.readNonEmptyInput();
+        if (!lineRepository.hasLine(lineName)) {
+            throw new IllegalArgumentException(DomainErrorMessage.NOT_EXIST_Line.get());
+        }
+        return lineName;
+    }
+
+    private String controlExistStationNameInput(BiConsumer<String, String> biConsumer, String phrase, String lineName) {
+        outputView.printPhrase(phrase);
+        String stationName = inputView.readNonEmptyInput();
+        biConsumer.accept(lineName, stationName);
+        return stationName;
+    }
+
+    private void validateStationForRemove(String lineName, String stationName) {
+        if (!stationRepository.hasStation(stationName)) {
+            throw new IllegalArgumentException(DomainErrorMessage.NOT_EXIST_STATION.get());
+        }
+        if (!lineService.canBeRemovedFromLine(lineName, stationName)) {
+            throw new IllegalArgumentException(DomainErrorMessage.CANNOT_BE_REMOVED_FROM_LINE.get());
+        }
     }
 }
