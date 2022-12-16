@@ -58,8 +58,8 @@
 - [x] 구간 삭제
 
 ### view
-- [ ] 옵션 입력
-- [ ] 순서 입력
+- [x] 옵션 입력
+- [x] 순서 입력
 
 ### controller
 - [ ] SectionController
