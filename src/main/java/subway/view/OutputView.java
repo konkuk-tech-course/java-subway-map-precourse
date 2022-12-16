@@ -1,11 +1,13 @@
 package subway.view;
 
+import subway.view.constant.MapStyle;
 import subway.view.constant.Prefix;
 import subway.view.constant.menu.*;
 import subway.view.constant.phrase.*;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 public class OutputView {
@@ -20,6 +22,9 @@ public class OutputView {
     }
 
     public void printStations(Set<String> stations) {
+        stations.forEach(this::printInfoPhrase);
+    }
+    public void printStations(List<String> stations) {
         stations.forEach(this::printInfoPhrase);
     }
 
@@ -60,6 +65,17 @@ public class OutputView {
 
     public void printPhrase(String phrase) {
         System.out.println(Prefix.PHRASE.get() + phrase);
+    }
+
+    public void printMap(Map<String, List<String>> linesInformations) {
+        linesInformations.entrySet().forEach(this::printInformation);
+    }
+
+    private void printInformation(Map.Entry<String, List<String>> information) {
+        printInfoPhrase(information.getKey());
+        printInfoPhrase(MapStyle.SEPARATE_LINE.getStyle());
+        printStations(information.getValue());
+        insertLineBreak();
     }
     
     public void printInfoPhrase(String phrase) {
