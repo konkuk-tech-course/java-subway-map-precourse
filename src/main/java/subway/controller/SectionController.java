@@ -5,6 +5,7 @@ import subway.repository.StationRepository;
 import subway.service.LineService;
 import subway.view.InputView;
 import subway.view.OutputView;
+import subway.view.constant.option.LineOptions;
 
 public class SectionController {
     private static class InstanceHolder {
@@ -23,4 +24,16 @@ public class SectionController {
     public static SectionController getInstance() {
         return SectionController.InstanceHolder.INSTANCE;
     }
+
+    public void operate() {
+        String option = Requester.requestStringInput(this::selectOption);
+        handleOption(option);
+    }
+
+    private String selectOption() {
+        outputView.printStationScreen();
+        outputView.printOptionRequestPhrase();
+        return inputView.readSectionOption();
+    }
+
 }
