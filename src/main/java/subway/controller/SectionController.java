@@ -52,6 +52,7 @@ public class SectionController {
         }
     }
 
+    // TODO: 호선에 역이 없음 검증
     private void registerSection() {
         String lineName = Requester.requestStringInput(() ->
                 controlExistLineNameInput(SectionPhrase.REGISTER_LINE_INPUT.get()));
@@ -82,6 +83,7 @@ public class SectionController {
         return stationName;
     }
 
+    // TODO: 호선에 역이 있어야 함 검증
     private int controlRegisterOrderInput(String phrase, String lineName) {
         outputView.printPhrase(phrase);
         int order = inputView.readOrder();
