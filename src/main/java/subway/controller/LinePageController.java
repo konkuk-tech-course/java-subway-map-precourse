@@ -41,34 +41,33 @@ public class LinePageController {
     }
 
     public void linePage1() {
-        String input="";
+        String input = "";
         try {
-            input=inputView.readRegisterLine();
-            Station upEndStation=inputView.readUpEndStation();
-            Station downEndStation=inputView.readDownEndStation(upEndStation);
+            input = inputView.readRegisterLine();
+            Station upEndStation = inputView.readUpEndStation();
+            Station downEndStation = inputView.readDownEndStation(upEndStation);
             addLine(new Line(input));
-            stationMap.put(new Line(input),new ArrayList<>(List.of(upEndStation,downEndStation)));
+            stationMap.put(new Line(input), new ArrayList<>(List.of(upEndStation, downEndStation)));
         } catch (IllegalArgumentException e) {
             System.out.println(ERROR_PREDICATE + e.getMessage());
             return;
         }
-        System.out.println("[INFO] "+input+"이 등록되었습니다.");
+        System.out.println("[INFO] " + input + "이 등록되었습니다.");
     }
 
     public void linePage2() {
-        String input="";
+        String input = "";
         try {
             deleteLineByName(inputView.readDeleteLine());
-
         } catch (IllegalArgumentException e) {
             System.out.println(ERROR_PREDICATE + e.getMessage());
             return;
         }
-        System.out.println("[INFO] "+input+"이 삭제되었습니다.");
+        System.out.println("[INFO] " + input + "이 삭제되었습니다.");
     }
 
     public void linePage3() {
-        for(int i=0;i<lines().size();i++){
+        for (int i = 0; i < lines().size(); i++) {
             System.out.print("[INFO] ");
             System.out.println(lines().get(i).getName());
         }

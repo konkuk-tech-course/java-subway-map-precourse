@@ -10,8 +10,6 @@ import java.util.*;
 import static subway.domain.LineRepository.addLine;
 import static subway.domain.LineRepository.lines;
 import static subway.domain.StationRepository.addStation;
-import static subway.domain.StationRepository.stations;
-import static subway.util.ErrorMessage.REGISTERED_IN_LINE;
 
 
 public class SubwayController {
@@ -25,13 +23,13 @@ public class SubwayController {
     boolean endProgram = false;
 
     public void run() {
+        setStation();
+        setLine();
         setStationMap();
         while (!endProgram) {
             mainPage();
         }
     }
-
-
 
 /*     1. 지하철역으로 교대역, 강남역, 역삼역, 남부터미널역, 양재역, 양재시민의숲역, 매봉역이 등록되어 있다.
        2. 지하철 노선으로 2호선, 3호선, 신분당선이 등록되어 있다.
@@ -40,7 +38,7 @@ public class SubwayController {
             - 3호선: 교대역 - 남부터미널역 - 양재역 - 매봉역
             - 신분당선: 강남역 - 양재역 - 양재시민의숲역*/
 
-    public void setStationMap() {
+    private void setStation() {
         addStation(new Station("교대역"));
         addStation(new Station("강남역"));
         addStation(new Station("역삼역"));
@@ -48,46 +46,83 @@ public class SubwayController {
         addStation(new Station("양재역"));
         addStation(new Station("양재시민의숲역"));
         addStation(new Station("매봉역"));
+    }
+
+    private void setLine() {
         addLine(new Line("2호선"));
         addLine(new Line("3호선"));
         addLine(new Line("신분당선"));
-        ArrayList<Station> registeredStations = new ArrayList<Station>();
-        registeredStations.add(stations().get(0));
-        registeredStations.add(stations().get(1));
-        registeredStations.add(stations().get(2));
-        stationMap.put(lines().get(0), registeredStations);
-        ArrayList<Station> registeredStations2 = new ArrayList<Station>();
-        registeredStations2.add(stations().get(0));
-        registeredStations2.add(stations().get(3));
-        registeredStations2.add(stations().get(4));
-        registeredStations2.add(stations().get(6));
-        stationMap.put(lines().get(1), registeredStations2);
-        ArrayList<Station> registeredStations3 = new ArrayList<Station>();
-        registeredStations3.add(stations().get(1));
-        registeredStations3.add(stations().get(4));
-        registeredStations3.add(stations().get(5));
-        stationMap.put(lines().get(2), registeredStations3);
+    }
+
+    public void setStationMap() {
+        setSecondLine();
+        setThirdLine();
+        setSinBundangLine();
+    }
+
+    private void setSinBundangLine() {
+        stationMap.put(lines().get(2), new ArrayList<>(Arrays.asList(
+                new Station("강남역"),
+                new Station("양재역"),
+                new Station("양재시민의숲역")
+        )));
+    }
+
+    private void setThirdLine() {
+        stationMap.put(lines().get(1), new ArrayList<>(Arrays.asList(
+                new Station("교대역"),
+                new Station("남부터미널역"),
+                new Station("양재역"),
+                new Station("매봉역")
+        )));
+    }
+
+    private void setSecondLine() {
+        stationMap.put(lines().get(0), new ArrayList<>(Arrays.asList(
+                new Station("교대역"),
+                new Station("강남역"),
+                new Station("역삼역")
+        )));
     }
 
     public void mainPage() {
         outputView.printMainMenu();
         String mainFunction = inputView.readMainFunction();
-        if (mainFunction.equals("1")) {
-            stationPageController.stationPage();
-        }
-        if (mainFunction.equals("2")) {
-            linePageController.linePage();
-        }
-        if (mainFunction.equals("3")) {
-            sectionPageController.sectionPage();
-        }
-        if (mainFunction.equals("4")) {
-            printStationMap();
-        }
+        toStatoinPage(mainFunction);
+        toLinePage(mainFunction);
+        toSectionPage(mainFunction);
+        printMap(mainFunction);
+        endProgram(mainFunction);
+    }
+
+    private void endProgram(String mainFunction) {
         if (mainFunction.equals("Q")) {
             endProgram = true;
         }
+    }
 
+    private void printMap(String mainFunction) {
+        if (mainFunction.equals("4")) {
+            printStationMap();
+        }
+    }
+
+    private void toSectionPage(String mainFunction) {
+        if (mainFunction.equals("3")) {
+            sectionPageController.sectionPage();
+        }
+    }
+
+    private void toLinePage(String mainFunction) {
+        if (mainFunction.equals("2")) {
+            linePageController.linePage();
+        }
+    }
+
+    private void toStatoinPage(String mainFunction) {
+        if (mainFunction.equals("1")) {
+            stationPageController.stationPage();
+        }
     }
 
     private void printStationMap() {
