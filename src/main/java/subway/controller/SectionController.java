@@ -80,11 +80,11 @@ public class SectionController {
 
     public void removeSection() {
         String lineName = Requester.requestStringInput(() ->
-                controlExistLineNameInput(SectionPhrase.REGISTER_LINE_INPUT.get()));
+                controlExistLineNameInput(SectionPhrase.DELETE_LINE_INPUT.get()));
         String stationName = Requester.requestStringInput(() ->
                 controlExistStationNameInput(
                         this::validateStationForRemove,
-                        SectionPhrase.DELETE_LINE_INPUT.get(),
+                        SectionPhrase.DELETE_STATION_INPUT.get(),
                         lineName
                 ));
 
