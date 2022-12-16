@@ -1,5 +1,9 @@
 package subway.controller;
 
+import subway.domain.Line;
+import subway.domain.constant.DomainErrorMessage;
+import subway.repository.LineRepository;
+import subway.repository.StationRepository;
 import subway.service.LineService;
 import subway.view.InputView;
 import subway.view.OutputView;
@@ -18,6 +22,9 @@ public class LineController {
     private InputView inputView = InputView.getInstance();
     private OutputView outputView = OutputView.getInstance();
     private LineService lineService = LineService.getInstance();
+
+    private final StationRepository stationRepository = StationRepository.getInstance();
+    private final LineRepository lineRepository = LineRepository.getInstance();
 
     private LineController(){}
 
@@ -49,32 +56,50 @@ public class LineController {
     }
 
     private void registerLine() {
-        String lineName = Requester.requestStringInput(() -> controlNameInput(LinePhrase.REGISTER.get()));
-        String startStationName = Requester.requestStringInput(() -> controlNameInput(LinePhrase.REGISTER_START_STATION.get()));
-        String endStationName = Requester.requestStringInput(() -> controlNameInput(LinePhrase.REGISTER_END_STATION.get()));
-        try {
-            lineService.registerLine(lineName, startStationName, endStationName);
-        } catch (IllegalArgumentException e) {
-            outputView.printErrorMessage(e.getMessage());
-            registerLine();
-        }
+        String lineName = Requester.requestStringInput(() ->
+                controlLineNameInput(LinePhrase.REGISTER.get()));
+        String startStationName = Requester.requestStringInput(() ->
+                controlStationNameInput(LinePhrase.REGISTER_START_STATION.get()));
+        String endStationName = Requester.requestStringInput(() ->
+                controlStationNameInput(LinePhrase.REGISTER_END_STATION.get()));
+
+        lineService.registerLine(lineName, startStationName, endStationName);
         outputView.printInfoPhrase(LinePhrase.REGISTER_INFO.get());
     }
 
     private void removeLine() {
-        String lineName = Requester.requestStringInput(() -> controlNameInput(LinePhrase.DELETE.get()));
-        try {
-            lineService.removeLine(lineName);
-        } catch (IllegalArgumentException e) {
-            outputView.printErrorMessage(e.getMessage());
-            removeLine();
-        }
+        String lineName = Requester.requestStringInput(() ->
+                controlDeleteLineNameInput(LinePhrase.DELETE.get()));
+        
+        lineService.removeLine(lineName);
         outputView.printInfoPhrase(LinePhrase.DELETE_INFO.get());
     }
 
-    private String controlNameInput(String phrase) {
+    private String controlLineNameInput(String phrase) {
         outputView.printPhrase(phrase);
-        return inputView.readNonEmptyInput();
+        String lineName = inputView.readNonEmptyInput();
+        if (lineRepository.hasLine(lineName)) {
+            throw new IllegalArgumentException(DomainErrorMessage.DUPLICATE_LINE.get());
+        }
+        return lineName;
+    }
+
+    private String controlDeleteLineNameInput(String phrase) {
+        outputView.printPhrase(phrase);
+        String lineName = inputView.readNonEmptyInput();
+        if (!lineRepository.hasLine(lineName)) {
+            throw new IllegalArgumentException(DomainErrorMessage.NOT_EXIST_Line.get());
+        }
+        return lineName;
+    }
+
+    private String controlStationNameInput(String phrase) {
+        outputView.printPhrase(phrase);
+        String stationName = inputView.readNonEmptyInput();
+        if (!stationRepository.hasStation(stationName)) {
+            throw new IllegalArgumentException(DomainErrorMessage.NOT_EXIST_STATION.get());
+        }
+        return stationName;
     }
 
     private void showAllLines() {
