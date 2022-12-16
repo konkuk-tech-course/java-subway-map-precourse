@@ -36,4 +36,15 @@ public class SectionController {
         return inputView.readSectionOption();
     }
 
+    private void handleOption(String option) {
+        if (option.equals(LineOptions.REGISTER.getOption())) {
+
+        }
+        if (option.equals(LineOptions.DELETE.getOption())) {
+
+        }
+        if (option.equals(LineOptions.FIND_ALL.getOption())) {
+
+        }
+    }
 }
