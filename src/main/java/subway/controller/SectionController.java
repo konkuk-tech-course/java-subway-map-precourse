@@ -73,7 +73,7 @@ public class SectionController {
     }
 
     // TODO: 검증 서비스로 분리
-    prvate void validateStationForRegistration(String lineName, String stationName) {
+    private void validateStationForRegistration(String lineName, String stationName) {
         if (!stationRepository.hasStation(stationName)) {
             throw new IllegalArgumentException(DomainErrorMessage.NOT_EXIST_STATION.get());
         }
