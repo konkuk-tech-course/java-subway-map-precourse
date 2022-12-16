@@ -15,6 +15,8 @@ public class LineService {
 
     private final StationRepository stationRepository = StationRepository.getInstance();
     private final LineRepository lineRepository = LineRepository.getInstance();
+    // TODO: 적절한 상수 생각해보기
+    private final int UNIT = 1;
 
     private LineService(){}
 
@@ -53,6 +55,16 @@ public class LineService {
         if (!isRemoved) {
             throw new IllegalArgumentException(DomainErrorMessage.NOT_EXIST_Line.get());
         }
+    }
+
+    public boolean isCorrectOrderForRegister(String lineName, int order) {
+        Line line = lineRepository.findLineByName(lineName);
+        return order <= line.getNumberOfStations() + UNIT;
+    }
+
+    public boolean isCorrectOrderForRemove(String lineName, int order) {
+        Line line = lineRepository.findLineByName(lineName);
+        return order <= line.getNumberOfStations();
     }
 
     public List<String> loadAllLines() {
