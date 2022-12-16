@@ -48,13 +48,19 @@ public class StationController {
     }
 
     private void registerStation() {
-        String stationName = Requester.requestStringInput(inputView::readNonEmptyInput);
+        String stationName = Requester.requestStringInput(() -> {
+            outputView.printPhrase(StationPhrase.REGISTER.get());
+            return inputView.readNonEmptyInput();
+        });
         stationService.registerStation(stationName);
         outputView.printInfoPhrase(StationPhrase.REGISTER_INFO.get());
     }
 
     private void removeStation() {
-        String stationName = Requester.requestStringInput(inputView::readNonEmptyInput);
+        String stationName = Requester.requestStringInput(() -> {
+            outputView.printPhrase(StationPhrase.DELETE.get());
+            return inputView.readNonEmptyInput();
+        });
         try {
             stationService.removeStation(stationName);
         } catch (IllegalArgumentException e) {
