@@ -53,6 +53,13 @@
 - [x] LineController
 
 ## 구간 추가 기능
+### domain
+- [x] Line
+    - [x] 역 존재 검사 기능
+- [x] LineService
+    - [x] 추가 가능 역 검사 기능
+    - [x] 삭제 가능 역 검사 기능
+
 ### service
 - [x] 구간 등록
 - [x] 구간 삭제
@@ -63,6 +70,19 @@
 
 ### controller
 - [x] SectionController
+
+## 노선도 출력 기능
+## domain
+- [x] LineRepository 노선 정보 조회 기능
+
+## service
+- [x] LineService 노선 정보 보여주기 기능
+
+## view
+- [x] 노선 정보 스타일링 기능
+
+## controller
+- [x] MainController 분기 추가
 
 ## util
 - [x] Reader 클래스
