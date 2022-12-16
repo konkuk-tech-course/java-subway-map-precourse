@@ -76,14 +76,14 @@ public class LineService {
 
     public void validateAddableLine(String lineName, String stationName) {
         Line line = lineRepository.findLineByName(lineName);
-        if (!line.hasStation(stationName)) {
+        if (line.hasStation(stationName)) {
             throw new IllegalArgumentException(DomainErrorMessage.CANNOT_BE_ADDED_TO_LINE.get());
         }
     }
 
     public void validateRemovableLine(String lineName, String stationName) {
         Line line = lineRepository.findLineByName(lineName);
-        if (line.hasStation(stationName)) {
+        if (!line.hasStation(stationName)) {
             throw new IllegalArgumentException(DomainErrorMessage.CANNOT_BE_REMOVED_FROM_LINE.get());
         }
     }
