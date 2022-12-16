@@ -36,7 +36,7 @@ public class StationController {
     private String selectOption() {
         outputView.printStationScreen();
         outputView.printOptionRequestPhrase();
-        return inputView.readMainOption();
+        return inputView.readStationOption();
     }
 
     private void handleOption(String option) {

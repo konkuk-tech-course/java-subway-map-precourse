@@ -40,7 +40,7 @@ public class LineController {
     private String selectOption() {
         outputView.printLineScreen();
         outputView.printOptionRequestPhrase();
-        return inputView.readMainOption();
+        return inputView.readLineOption();
     }
 
     private void handleOption(String option) {
