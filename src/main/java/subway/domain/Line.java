@@ -41,4 +41,9 @@ public class Line {
         return stations.stream().map(Station::getName)
                 .collect(Collectors.toList());
     }
+
+    public boolean hasStation(String stationName) {
+        return stations.stream()
+                .anyMatch(station -> stationName.equals(station.getName()));
+    }
 }
