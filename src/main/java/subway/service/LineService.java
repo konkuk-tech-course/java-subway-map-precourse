@@ -34,12 +34,12 @@ public class LineService {
     }
 
     private void validateNewLine(String name, String startStationName, String endStationName) {
-        validateLineName(name);
+        validateNonExistLineName(name);
         validateStation(startStationName);
         validateStation(endStationName);
     }
 
-    private void validateLineName(String name) {
+    private void validateNonExistLineName(String name) {
         if (lineRepository.hasLine(name)) {
             throw new IllegalArgumentException(DomainErrorMessage.DUPLICATE_LINE.get());
         }
