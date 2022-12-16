@@ -15,4 +15,13 @@ public class Requester {
             return requestStringInput(supplier);
         }
     }
+
+    public static int requestNumberInput(Supplier<Integer> supplier) {
+        try {
+            return supplier.get();
+        } catch (IllegalArgumentException e) {
+            outputView.printErrorMessage(e.getMessage());
+            return requestNumberInput(supplier);
+        }
+    }
 }
