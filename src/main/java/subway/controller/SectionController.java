@@ -38,7 +38,7 @@ public class SectionController {
     }
 
     private String selectOption() {
-        outputView.printStationScreen();
+        outputView.printSectionScreen();
         outputView.printOptionRequestPhrase();
         return inputView.readSectionOption();
     }
