@@ -1,6 +1,7 @@
 package subway.service;
 
 import subway.domain.Station;
+import subway.domain.constant.DomainErrorMessage;
 import subway.repository.StationRepository;
 
 import java.util.Set;
@@ -24,6 +25,12 @@ public class StationService {
 
     public void removeStation(String name) {
         stationRepository.deleteStation(name);
+    }
+
+    public void validateExistStationName(String name) {
+        if (!stationRepository.hasStation(name)) {
+            throw new IllegalArgumentException(DomainErrorMessage.DUPLICATE_STATION.get());
+        }
     }
 
     public Set<String> loadAllStations() {
