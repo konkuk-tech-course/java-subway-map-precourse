@@ -33,6 +33,10 @@ public class Line {
         stations.removeIf(station -> Objects.equals(station.getName(), stationName));
     }
 
+    public int getNumberOfStations() {
+        return stations.size();
+    }
+
     public List<String> findAllStations() {
         return stations.stream().map(Station::getName)
                 .collect(Collectors.toList());
