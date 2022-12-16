@@ -68,7 +68,6 @@ public class StationController {
         outputView.printInfoPhrase(StationPhrase.DELETE_INFO.get());
     }
 
-    // TODO: 중복 검증 기능 서비스에서 구현 후 repository 의존성 제거
     private String controlStationNameInput(Consumer<String> consumer, String phrase) {
         outputView.printPhrase(phrase);
         String stationName = inputView.readNonEmptyInput();
