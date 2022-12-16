@@ -1,5 +1,6 @@
 package subway.controller;
 
+import subway.service.LineService;
 import subway.view.InputView;
 import subway.view.OutputView;
 import subway.view.constant.option.MainOptions;
@@ -15,6 +16,7 @@ public class MainController {
     private StationController stationController = StationController.getInstance();
     private LineController lineController = LineController.getInstance();
     private SectionController sectionController = SectionController.getInstance();
+    private LineService lineService = LineService.getInstance();
 
     private MainController(){}
 
@@ -47,7 +49,7 @@ public class MainController {
             sectionController.operate();
         }
         if (option.equals(MainOptions.PRINT_MAP.getOption())) {
-
+            outputView.printMap(lineService.loadAllLinesInformation());
         }
     }
 
