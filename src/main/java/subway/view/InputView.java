@@ -52,11 +52,11 @@ public class InputView {
         return input;
     }
 
-//    public int readOrder() {
-//        printPhrase(SectionPhrase.REGISTER_ORDER_INPUT.get());
-//        String input = Reader.readLine().trim();
-//        ViewValidator.
-//    }
+    public int readOrder() {
+        String input = Reader.readLine().trim();
+        ViewValidator.validateNumberInput(input);
+        return Integer.parseInt(input);
+    }
 
     private void insertLineBreak() {
         System.out.println();
