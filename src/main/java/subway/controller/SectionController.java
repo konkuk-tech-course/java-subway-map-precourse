@@ -7,15 +7,10 @@ import subway.service.LineService;
 import subway.service.SectionService;
 import subway.view.InputView;
 import subway.view.OutputView;
-import subway.view.constant.option.LineOptions;
 import subway.view.constant.option.SectionOptions;
-import subway.view.constant.phrase.LinePhrase;
 import subway.view.constant.phrase.SectionPhrase;
-import subway.view.constant.phrase.StationPhrase;
 
 import java.util.function.BiConsumer;
-import java.util.function.BiPredicate;
-import java.util.function.Predicate;
 
 public class SectionController {
     private static class InstanceHolder {
@@ -109,7 +104,7 @@ public class SectionController {
         outputView.printPhrase(phrase);
         String lineName = inputView.readNonEmptyInput();
         if (!lineRepository.hasLine(lineName)) {
-            throw new IllegalArgumentException(DomainErrorMessage.NOT_EXIST_Line.get());
+            throw new IllegalArgumentException(DomainErrorMessage.NOT_EXIST_LINE.get());
         }
         return lineName;
     }

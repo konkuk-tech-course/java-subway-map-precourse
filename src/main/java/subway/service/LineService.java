@@ -47,7 +47,7 @@ public class LineService {
 
     public void validateExistLineName(String name) {
         if (!lineRepository.hasLine(name)) {
-            throw new IllegalArgumentException(DomainErrorMessage.NOT_EXIST_Line.get());
+            throw new IllegalArgumentException(DomainErrorMessage.NOT_EXIST_LINE.get());
         }
     }
 
@@ -60,7 +60,7 @@ public class LineService {
     public void removeLine(String name) {
         boolean isRemoved = lineRepository.deleteLineByName(name);
         if (!isRemoved) {
-            throw new IllegalArgumentException(DomainErrorMessage.NOT_EXIST_Line.get());
+            throw new IllegalArgumentException(DomainErrorMessage.NOT_EXIST_LINE.get());
         }
     }
 

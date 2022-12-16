@@ -7,7 +7,7 @@ public enum DomainErrorMessage {
     NOT_EXIST_STATION("해당 역은 존재하지 않습니다."),
     INVALID_ORDER("잘못된 순서입니다."),
     DUPLICATE_LINE("이미 등록된 호선입니다."),
-    NOT_EXIST_Line("해당 호선은 존재하지 않습니다."),
+    NOT_EXIST_LINE("해당 호선은 존재하지 않습니다."),
     CANNOT_BE_ADDED_TO_LINE("이미 해당 호선에 포함된 역입니다."),
     CANNOT_BE_REMOVED_FROM_LINE("해당 호선에 존재하지 않는 역입니다.");
 
