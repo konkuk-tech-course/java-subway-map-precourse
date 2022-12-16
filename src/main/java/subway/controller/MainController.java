@@ -14,6 +14,7 @@ public class MainController {
     private OutputView outputView = OutputView.getInstance();
     private StationController stationController = StationController.getInstance();
     private LineController lineController = LineController.getInstance();
+    private SectionController sectionController = SectionController.getInstance();
 
     private MainController(){}
 
@@ -43,7 +44,7 @@ public class MainController {
             lineController.operate();
         }
         if (option.equals(MainOptions.SECTION.getOption())) {
-
+            sectionController.operate();
         }
         if (option.equals(MainOptions.PRINT_MAP.getOption())) {
 
