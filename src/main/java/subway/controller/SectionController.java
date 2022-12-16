@@ -1,10 +1,9 @@
 package subway.controller;
 
 import subway.domain.constant.DomainErrorMessage;
-import subway.repository.LineRepository;
-import subway.repository.StationRepository;
 import subway.service.LineService;
 import subway.service.SectionService;
+import subway.service.StationService;
 import subway.view.InputView;
 import subway.view.OutputView;
 import subway.view.constant.option.SectionOptions;
@@ -21,9 +20,7 @@ public class SectionController {
     private OutputView outputView = OutputView.getInstance();
     private LineService lineService = LineService.getInstance();
     private SectionService sectionService = SectionService.getInstance();
-
-    private final StationRepository stationRepository = StationRepository.getInstance();
-    private final LineRepository lineRepository = LineRepository.getInstance();
+    private StationService stationService = StationService.getInstance();
 
     private SectionController(){}
 
@@ -67,14 +64,9 @@ public class SectionController {
         outputView.printInfoPhrase(SectionPhrase.REGISTER_INFO.get());
     }
 
-    // TODO: 검증 서비스로 분리
     private void validateStationForRegistration(String lineName, String stationName) {
-        if (!stationRepository.hasStation(stationName)) {
-            throw new IllegalArgumentException(DomainErrorMessage.NOT_EXIST_STATION.get());
-        }
-        if (!lineService.canBeAddedToLine(lineName, stationName)) {
-            throw new IllegalArgumentException(DomainErrorMessage.CANNOT_BE_ADDED_TO_LINE.get());
-        }
+        stationService.validateExistStationName(stationName);
+        lineService.validateAddableLine(lineName, stationName);
     }
 
     private int controlRegisterOrderInput(String phrase, String lineName) {
@@ -103,9 +95,7 @@ public class SectionController {
     private String controlExistLineNameInput(String phrase) {
         outputView.printPhrase(phrase);
         String lineName = inputView.readNonEmptyInput();
-        if (!lineRepository.hasLine(lineName)) {
-            throw new IllegalArgumentException(DomainErrorMessage.NOT_EXIST_LINE.get());
-        }
+        lineService.validateExistLineName(lineName);
         return lineName;
     }
 
@@ -117,11 +107,7 @@ public class SectionController {
     }
 
     private void validateStationForRemove(String lineName, String stationName) {
-        if (!stationRepository.hasStation(stationName)) {
-            throw new IllegalArgumentException(DomainErrorMessage.NOT_EXIST_STATION.get());
-        }
-        if (!lineService.canBeRemovedFromLine(lineName, stationName)) {
-            throw new IllegalArgumentException(DomainErrorMessage.CANNOT_BE_REMOVED_FROM_LINE.get());
-        }
+        stationService.validateExistStationName(stationName);
+        lineService.validateRemovableLine(lineName, stationName);
     }
 }
