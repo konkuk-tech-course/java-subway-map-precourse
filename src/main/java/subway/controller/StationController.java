@@ -1,0 +1,86 @@
+package subway.controller;
+
+import subway.service.StationService;
+import subway.view.InputView;
+import subway.view.OutputView;
+import subway.view.constant.option.Options;
+import subway.view.constant.option.StationOptions;
+import subway.view.constant.phrase.StationPhrase;
+
+import java.util.Set;
+import java.util.function.Consumer;
+
+public class StationController {
+    private static class InstanceHolder {
+        private static final StationController INSTANCE = new StationController();
+    }
+
+    private InputView inputView = InputView.getInstance();
+    private OutputView outputView = OutputView.getInstance();
+    private StationService stationService = StationService.getInstance();
+
+    private StationController(){}
+
+    public static StationController getInstance() {
+        return StationController.InstanceHolder.INSTANCE;
+    }
+
+    public void operate() {
+        String option = Requester.requestStringInput(this::selectOption);
+        handleOption(option);
+    }
+
+    private String selectOption() {
+        outputView.printStationScreen();
+        outputView.printOptionRequestPhrase();
+        return inputView.readStationOption();
+    }
+
+    private void handleOption(String option) {
+        if (option.equals(StationOptions.REGISTER.getOption())) {
+            registerStation();
+        }
+        if (option.equals(StationOptions.DELETE.getOption())) {
+            removeStation();
+        }
+        if (option.equals(StationOptions.FIND_ALL.getOption())) {
+            showAllStations();
+        }
+    }
+
+    private void registerStation() {
+        String stationName = Requester.requestStringInput(() ->
+                controlStationNameInput(
+                        stationService::validateNonExistStationName,
+                        StationPhrase.REGISTER.get()
+                ));
+        stationService.registerStation(stationName);
+        outputView.printInfoPhrase(StationPhrase.REGISTER_INFO.get());
+    }
+
+    private void removeStation() {
+        String stationName = Requester.requestStringInput(() ->
+                controlStationNameInput(
+                        stationService::validateExistStationName,
+                        StationPhrase.DELETE.get()
+                ));
+        stationService.removeStation(stationName);
+        outputView.printInfoPhrase(StationPhrase.DELETE_INFO.get());
+    }
+
+    private String controlStationNameInput(Consumer<String> consumer, String phrase) {
+        outputView.printPhrase(phrase);
+        String stationName = inputView.readNonEmptyInput();
+        consumer.accept(stationName);
+        return stationName;
+    }
+
+    private void showAllStations() {
+        Set<String> stations = stationService.loadAllStations();
+        outputView.printStations(stations);
+    }
+
+    private boolean isBack(String option) {
+        return option.equals(Options.BACK.get());
+    }
+}

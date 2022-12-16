@@ -1,0 +1,19 @@
+package subway.view.constant.menu;
+
+public enum LineMenu implements Menu {
+    REGISTER_MENU("1. 노선 등록"),
+    DELETE_MENU("2. 노선 삭제"),
+    FIND_ALL_MENU("3. 노선 조회"),
+    BACK("B. 돌아가기");
+
+    private final String menu;
+
+    LineMenu(String menu) {
+        this.menu = menu;
+    }
+
+    @Override
+    public String getMenu() {
+        return menu;
+    }
+}
