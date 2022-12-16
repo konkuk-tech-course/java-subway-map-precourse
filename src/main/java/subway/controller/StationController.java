@@ -1,5 +1,7 @@
 package subway.controller;
 
+import subway.domain.constant.DomainErrorMessage;
+import subway.repository.StationRepository;
 import subway.service.StationService;
 import subway.view.InputView;
 import subway.view.OutputView;
@@ -17,6 +19,8 @@ public class StationController {
     private InputView inputView = InputView.getInstance();
     private OutputView outputView = OutputView.getInstance();
     private StationService stationService = StationService.getInstance();
+
+    private final StationRepository stationRepository = StationRepository.getInstance();
 
     private StationController(){}
 
@@ -48,26 +52,35 @@ public class StationController {
     }
 
     private void registerStation() {
-        String stationName = Requester.requestStringInput(() -> {
-            outputView.printPhrase(StationPhrase.REGISTER.get());
-            return inputView.readNonEmptyInput();
-        });
+        String stationName = Requester.requestStringInput(() ->
+                controlRegisterStationNameInput(StationPhrase.REGISTER.get()));
         stationService.registerStation(stationName);
         outputView.printInfoPhrase(StationPhrase.REGISTER_INFO.get());
     }
 
     private void removeStation() {
-        String stationName = Requester.requestStringInput(() -> {
-            outputView.printPhrase(StationPhrase.DELETE.get());
-            return inputView.readNonEmptyInput();
-        });
-        try {
-            stationService.removeStation(stationName);
-        } catch (IllegalArgumentException e) {
-            outputView.printErrorMessage(e.getMessage());
-            removeStation();
-        }
+        String stationName = Requester.requestStringInput(() ->
+                controlDeleteStationNameInput(StationPhrase.DELETE.get()));
+        stationService.removeStation(stationName);
         outputView.printInfoPhrase(StationPhrase.DELETE_INFO.get());
+    }
+    
+    private String controlRegisterStationNameInput(String phrase) {
+        outputView.printPhrase(phrase);
+        String stationName = inputView.readNonEmptyInput();
+        if (stationRepository.hasStation(stationName)) {
+            throw new IllegalArgumentException(DomainErrorMessage.DUPLICATE_STATION.get());
+        }
+        return stationName;
+    }
+
+    private String controlDeleteStationNameInput(String phrase) {
+        outputView.printPhrase(phrase);
+        String stationName = inputView.readNonEmptyInput();
+        if (!stationRepository.hasStation(stationName)) {
+            throw new IllegalArgumentException(DomainErrorMessage.NOT_EXIST_STATION.get());
+        }
+        return stationName;
     }
 
     private void showAllStations() {
