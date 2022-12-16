@@ -1,14 +1,8 @@
 package subway.view;
 
 import subway.view.constant.Prefix;
-import subway.view.constant.menu.LineMenu;
-import subway.view.constant.menu.MainMenu;
-import subway.view.constant.menu.Menu;
-import subway.view.constant.menu.StationMenu;
-import subway.view.constant.phrase.CommonPhrase;
-import subway.view.constant.phrase.LinePhrase;
-import subway.view.constant.phrase.MainPhrase;
-import subway.view.constant.phrase.StationPhrase;
+import subway.view.constant.menu.*;
+import subway.view.constant.phrase.*;
 
 import java.util.Arrays;
 import java.util.List;
@@ -49,8 +43,8 @@ public class OutputView {
     }
 
     public void printSectionScreen() {
-        printPhrase(StationPhrase.TITLE.get());
-        printMenu(StationMenu.class);
+        printPhrase(SectionPhrase.TITLE.get());
+        printMenu(SectionMenu.class);
     }
 
     public void printOptionRequestPhrase() {
