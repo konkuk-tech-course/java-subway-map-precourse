@@ -1,7 +1,5 @@
 package subway.view.constant.menu;
 
-import subway.view.constant.Prefix;
-
 public enum LineMenu implements Menu {
     REGISTER_MENU("1. 노선 등록"),
     DELETE_MENU("2. 노선 삭제"),

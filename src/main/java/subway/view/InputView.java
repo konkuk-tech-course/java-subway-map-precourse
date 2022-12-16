@@ -1,15 +1,6 @@
 package subway.view;
 
-import subway.domain.Station;
 import subway.util.Reader;
-import subway.view.constant.Prefix;
-import subway.view.constant.menu.LineMenu;
-import subway.view.constant.menu.MainMenu;
-import subway.view.constant.menu.Menu;
-import subway.view.constant.menu.StationMenu;
-import subway.view.constant.phrase.*;
-
-import java.util.Arrays;
 
 public class InputView {
     private static class InstanceHolder {
