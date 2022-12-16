@@ -1,7 +1,5 @@
 package subway.controller;
 
-import subway.domain.constant.DomainErrorMessage;
-import subway.repository.StationRepository;
 import subway.service.StationService;
 import subway.view.InputView;
 import subway.view.OutputView;
@@ -10,6 +8,7 @@ import subway.view.constant.option.StationOptions;
 import subway.view.constant.phrase.StationPhrase;
 
 import java.util.Set;
+import java.util.function.Consumer;
 
 public class StationController {
     private static class InstanceHolder {
@@ -19,8 +18,6 @@ public class StationController {
     private InputView inputView = InputView.getInstance();
     private OutputView outputView = OutputView.getInstance();
     private StationService stationService = StationService.getInstance();
-
-    private final StationRepository stationRepository = StationRepository.getInstance();
 
     private StationController(){}
 
@@ -53,34 +50,29 @@ public class StationController {
 
     private void registerStation() {
         String stationName = Requester.requestStringInput(() ->
-                controlRegisterStationNameInput(StationPhrase.REGISTER.get()));
+                controlStationNameInput(
+                        stationService::validateNonExistStationName,
+                        StationPhrase.REGISTER.get()
+                ));
         stationService.registerStation(stationName);
         outputView.printInfoPhrase(StationPhrase.REGISTER_INFO.get());
     }
 
     private void removeStation() {
         String stationName = Requester.requestStringInput(() ->
-                controlDeleteStationNameInput(StationPhrase.DELETE.get()));
+                controlStationNameInput(
+                        stationService::validateExistStationName,
+                        StationPhrase.DELETE.get()
+                ));
         stationService.removeStation(stationName);
         outputView.printInfoPhrase(StationPhrase.DELETE_INFO.get());
     }
 
     // TODO: 중복 검증 기능 서비스에서 구현 후 repository 의존성 제거
-    private String controlRegisterStationNameInput(String phrase) {
+    private String controlStationNameInput(Consumer<String> consumer, String phrase) {
         outputView.printPhrase(phrase);
         String stationName = inputView.readNonEmptyInput();
-        if (stationRepository.hasStation(stationName)) {
-            throw new IllegalArgumentException(DomainErrorMessage.DUPLICATE_STATION.get());
-        }
-        return stationName;
-    }
-
-    private String controlDeleteStationNameInput(String phrase) {
-        outputView.printPhrase(phrase);
-        String stationName = inputView.readNonEmptyInput();
-        if (!stationRepository.hasStation(stationName)) {
-            throw new IllegalArgumentException(DomainErrorMessage.NOT_EXIST_STATION.get());
-        }
+        consumer.accept(stationName);
         return stationName;
     }
 
