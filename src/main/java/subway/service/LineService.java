@@ -69,11 +69,6 @@ public class LineService {
         return order <= line.getNumberOfStations() + UNIT;
     }
 
-    public boolean isCorrectOrderForRemove(String lineName, int order) {
-        Line line = lineRepository.findLineByName(lineName);
-        return order <= line.getNumberOfStations();
-    }
-
     public void validateAddableLine(String lineName, String stationName) {
         Line line = lineRepository.findLineByName(lineName);
         if (line.hasStation(stationName)) {
